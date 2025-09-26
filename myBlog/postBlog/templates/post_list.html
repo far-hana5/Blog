@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title  %}
+BlogPost
+{% endblock  %}
+
+{% block content %}
+<h1 class="text-center mt-4">Welcome to Blog</h1>
+
+<a class="btn btn-primary mb-4" href="{% url 'post_create'  %}">Create a Blog</a>
+<div class="container row gap-3">
+    {% for post in posts  %} 
+    <div class="card" style="width: 18rem;">
+  <img src="{{post.photo.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{post.user.username}}</h5>
+    <p class="card-text">{{post.text}}</p>
+    <a href="{% url 'post_edit' post.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Delete</a>
+
+  </div>
+</div>
+    {% endfor %}
+</div>
+{% endblock  %}
